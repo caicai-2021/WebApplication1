@@ -40,5 +40,19 @@ namespace WebApplication1.Common
             //返回索引第一个的表值
             return ds.Tables[0]; 
         }
+
+        public static string Savedata(string sql)
+        {
+            String connetStr = "server=localhost;port=3306;user=root;password=123456; database=manage_demo;";
+            MySqlConnection conn = new MySqlConnection(connetStr);
+           
+            conn.Open();
+
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+
+            return "0";
+        }
+
+
     }
 }
