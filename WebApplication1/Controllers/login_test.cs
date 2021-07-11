@@ -33,18 +33,14 @@ namespace WebApplication1.Controllers
 
         //}
         //frombody 是指的是原生 fromform指的是表格
-        //FromBody:在Action方法传入参数后添加[frombody]属性，参数将以一个整体的josn对象的形式传递。
+        //FromBody:在Action方法传入参数后添加[frombody]属性，参数将以一个整体的json的形式传递。
         //FromForm:在Action方法传入参数后添加[FromForm]属性，参数将以表单【key:value对Array组】的形式提交。
-        public IActionResult Fill([FromBody] object user)
+        public IActionResult Fill ([FromBody] Root user)
         {
-            //string number = user.user_number;
-            //string psd = user.password;
             //实现对象解析字符串的功能，并提取响应的数据
             //反序列化功能
-            string jsonString = user.ToString();
-            Root js = JsonConvert.DeserializeObject<Root>(jsonString);
-            string number = js.value.user_number;//用户
-            string psd = js.value.password;//密码
+            string number = user.value.user_number;//用户
+            string psd = user.value.password;//密码
 
             //需要配置一系列的nuget包和引用
             //调用common层里的数据库功能，输入sql语句，进行查询
@@ -52,13 +48,11 @@ namespace WebApplication1.Controllers
             //判断得到的列表是否为空，进行判断
             if (dt_1.Rows.Count == 0)
             {
-                //序列化，同时封装成对象，进行返回传输
-                JavaScriptSerializer ero = new JavaScriptSerializer();
+                //序列化进行返回传输
+                //JavaScriptSerializer ero = new JavaScriptSerializer();
                 var json = new { state = 1, msg = "用户名或密码不正确!" };
-                string str1 = ero.Serialize(json);
-                //将json转化为对象输出
-                JObject result1 = JObject.Parse(str1);
-                return Ok(result1);
+                //string str1 = ero.Serialize(json);
+                return Ok(json);
             }
             //登录成功返回state=0
             else
