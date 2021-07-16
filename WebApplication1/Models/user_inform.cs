@@ -20,7 +20,8 @@ namespace WebApplication1.Models
         public string Mail { get; set; }
         public string Phone { get; set; }
         public string Createtime { get; set; }
-        
+        public string key { get; set; }
+
 
         public static List<user_inform> GetUserLists()
         {
@@ -37,6 +38,7 @@ namespace WebApplication1.Models
             user_inform user = new user_inform();
             user.User_number = dr["user_number"].ToString();
             user.User_type = (int)dr["user_type"];
+            user.key = dr["key"].ToString();
             user.Name = dr["name"].ToString();
             user.Confirm_password = dr["confirm_password"].ToString();
             user.Gender = dr["gender"].ToString();
