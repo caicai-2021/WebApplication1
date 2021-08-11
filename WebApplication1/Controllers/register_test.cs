@@ -38,20 +38,23 @@ namespace WebApplication1.Controllers
             string office = js.Value.Office;
 
             string email = js.Value.Mail;
-            
-            string phone = js.Value.Phone; 
+
+            string phone = js.Value.Phone;
 
 
             DateTime dt = DateTime.Now;
             string dt_str = dt.ToString("yyyy-MM-dd HH:mm:ss");
 
             //调用common层里的数据库功能，输入sql语句，进行增加
-            string m = Mysqlhelper.Savedata(@"INSERT INTO user_inform VALUES('" + number + "', '" + type + "', '" +
-                                                         name +"', '" + psd + "','" +gender + "','" +
-                                                         residence +"','" + dorm + "','" + 
-                                                         office + "','" + email + "','" + phone + "' ,'"+ dt_str+"')");
+            string m = Mysqlhelper.Savedata(@"INSERT INTO `manage_demo`.`user_inform`( `user_number`, `user_type`, `name`, 
+                                                `confirm_password`, `gender`, `residence`, `dorm`, 
+                                                        `office`, `mail`, `phone`, `create_time`)
+                                                     value ('" + number + "' ,'" + type + "' ,'" +
+                                                         name + "', '" + psd + "','" + gender + "','" +
+                                                         residence + "','" + dorm + "','" +
+                                                         office + "','" + email + "','" + phone + "' ,'" + dt_str + "')");
             JavaScriptSerializer ero = new JavaScriptSerializer();
-            var json = new { status = m , msg = "注册成功" };
+            var json = new { status = m, msg = "注册成功" };
             string str1 = ero.Serialize(json);
             JObject result1 = JObject.Parse(str1);
             return Ok(result1);

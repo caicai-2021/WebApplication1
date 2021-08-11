@@ -22,7 +22,7 @@ namespace WebApplication1.Common
         public static DataTable ExecuteTable(string sql)
         {
             //连接数据库的工作,open连接仓库
-            String connetStr = "server=localhost;port=3306;user=root;password=123456; database=manage_demo;";
+            string connetStr = "server=localhost;port=3306;user=root;password=123456; database=manage_demo;";
             MySqlConnection conn = new MySqlConnection(connetStr);
             conn.Open();
             //执行sql语句管家工作
@@ -43,12 +43,13 @@ namespace WebApplication1.Common
 
         public static string Savedata(string sql)
         {
-            String connetStr = "server=localhost;port=3306;user=root;password=123456; database=manage_demo;";
+            string connetStr = "server=localhost;port=3306;user=root;password=123456; database=manage_demo;";
             MySqlConnection conn = new MySqlConnection(connetStr);
            
             conn.Open();
 
             MySqlCommand cmd = new MySqlCommand(sql, conn);
+            cmd.ExecuteNonQuery();
 
             return "0";
         }
