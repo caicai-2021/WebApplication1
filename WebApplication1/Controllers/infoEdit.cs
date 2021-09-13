@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using WebApplication1.Common;
 
@@ -36,9 +37,12 @@ namespace WebApplication1.Controllers
             string email = user.value.mail;
             //电话号码
             string phone = user.value.phone;
+            //判断一下是否包含头像数据的属性
+          
             //用序号获取list数组，得到头像数据
             //Photo_dataItem p1 = user.value.photo_data[0];
-             string photo_data = user.value.photo_data[0].thumbUrl;
+            string photo_data = user.value.photo_data[0].thumbUrl;
+            
             //执行sql语句
             string m  = Mysqlhelper.Savedata(@"UPDATE user_inform SET name = '"+name+"',confirm_password = '"+psd+"',gender = '"+gender+"',residence = '"
                                                 +residence+"',dorm = '"+ dorm +"',office = '"+office+"',mail = '"+email+"',phone= '"
@@ -62,6 +66,21 @@ namespace WebApplication1.Controllers
             }
             //
         }
+        ///// <summary>
+        ///// 利用反射来判断对象是否包含某个属性
+        ///// </summary>
+        ///// <param name="instance">object</param>
+        ///// <param name="propertyName">需要判断的属性</param>
+        ///// <returns>是否包含</returns>
+        //Func  ContainProperty(this object instance, string propertyName)
+        //{
+        //    if (instance != null && !string.IsNullOrEmpty(propertyName))
+        //    {
+        //        PropertyInfo _findedPropertyInfo = instance.GetType().GetProperty(propertyName);
+        //        return (_findedPropertyInfo != null);
+        //    }
+        //    return false;
+        //}
         //声明一个将表格数据转化为json对象的方法
         public static JObject GetJson(DataTable myTable)
         {
