@@ -24,7 +24,7 @@ namespace WebApplication1.Controllers
 
             string psd = user.value.confirm_password;//密码
             //用户类型
-            string type = user.value.user_type;
+            string tutor = user.value.tutor;
             //性别
             string gender = user.value.gender;
             //住址
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
             string photo_data = user.value.photo_data[0].thumbUrl;
             
             //执行sql语句
-            string m  = Mysqlhelper.Savedata(@"UPDATE user_inform SET name = '"+name+"',confirm_password = '"+psd+"',gender = '"+gender+"',residence = '"
+            string m  = Mysqlhelper.Savedata(@"UPDATE user_inform SET name = '"+name+"',confirm_password = '"+psd+"',gender = '"+gender+ "',tutor = '" + tutor + "',residence = '"
                                                 +residence+"',dorm = '"+ dorm +"',office = '"+office+"',mail = '"+email+"',phone= '"
                                                 +phone+ "',photo_data ='" + photo_data + "'WHERE user_number ='" + number + "'");
             if (m=="0") {
@@ -167,8 +167,8 @@ namespace WebApplication1.Controllers
             public string user_number { get; set; }
             /// <summary>
             /// 
-            /// </summary>
-            public string user_type { get; set; }
+            /// </summary>       
+            public string tutor { get; set; }
             /// <summary>
             /// 蔡保玉
             /// </summary>

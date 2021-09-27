@@ -12,6 +12,7 @@ namespace WebApplication1.Models
         public string User_number { get; set; }
         public int User_type { get; set; }
         public string Name { get; set; }
+        public string Tutor { get; set; }
         public string Confirm_password { get; set; }
         public string Gender { get; set; }
         public string Residence { get; set; }
@@ -40,6 +41,7 @@ namespace WebApplication1.Models
             user.User_type = (int)dr["user_type"];
             user.key = dr["key"].ToString();
             user.Name = dr["name"].ToString();
+            user.Tutor = dr["tutor"].ToString();
             user.Confirm_password = dr["confirm_password"].ToString();
             user.Gender = dr["gender"].ToString();
             user.Residence = dr["residence"].ToString();

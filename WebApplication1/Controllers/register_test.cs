@@ -23,36 +23,22 @@ namespace WebApplication1.Controllers
             Root js = JsonConvert.DeserializeObject<Root>(jsonString);
             string number = js.Value.User_number;
 
-            int type = js.Value.User_type;
+            string tutor = js.Value.Tutor;
+
+            int type = 2;
 
             string name = js.Value.Name;
 
             string psd = js.Value.Confirm_password;
-
-            string gender = js.Value.Gender;
-
-            string residence = js.Value.Residence;
-
-            string dorm = js.Value.Dorm;
-
-            string office = js.Value.Office;
-
-            string email = js.Value.Mail;
-
-            string phone = js.Value.Phone;
-
 
             DateTime dt = DateTime.Now;
             string dt_str = dt.ToString("yyyy-MM-dd HH:mm:ss");
 
             //调用common层里的数据库功能，输入sql语句，进行增加
             string m = Mysqlhelper.Savedata(@"INSERT INTO `manage_demo`.`user_inform`( `user_number`, `user_type`, `name`, 
-                                                `confirm_password`, `gender`, `residence`, `dorm`, 
-                                                        `office`, `mail`, `phone`, `create_time`)
+                                                `confirm_password`, tutor , `create_time`)
                                                      value ('" + number + "' ,'" + type + "' ,'" +
-                                                         name + "', '" + psd + "','" + gender + "','" +
-                                                         residence + "','" + dorm + "','" +
-                                                         office + "','" + email + "','" + phone + "' ,'" + dt_str + "')");
+                                                         name + "', '" + psd + "','"+ tutor+ "','"+ dt_str + "')");
             JavaScriptSerializer ero = new JavaScriptSerializer();
             var json = new { status = m, msg = "注册成功" };
             string str1 = ero.Serialize(json);
@@ -63,15 +49,10 @@ namespace WebApplication1.Controllers
         public class Value
         {
             public string User_number { get; set; }
-            public int User_type { get; set; }
+            //public int User_type { get; set; }
             public string Name { get; set; }
+            public string Tutor { get; set; }
             public string Confirm_password { get; set; }
-            public string Gender { get; set; }
-            public string Residence { get; set; }
-            public string Dorm { get; set; }
-            public string Office { get; set; }
-            public string Mail { get; set; }
-            public string Phone { get; set; }
             public string Createtime { get; set; }
         }
 
