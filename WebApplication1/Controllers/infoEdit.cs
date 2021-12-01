@@ -38,11 +38,10 @@ namespace WebApplication1.Controllers
             //电话号码
             string phone = user.value.phone;
             //判断一下是否包含头像数据的属性
-          
+
             //用序号获取list数组，得到头像数据
             //Photo_dataItem p1 = user.value.photo_data[0];
             string photo_data = user.value.photo_data[0].thumbUrl;
-            
             //执行sql语句
             string m  = Mysqlhelper.Savedata(@"UPDATE user_inform SET name = '"+name+"',confirm_password = '"+psd+"',gender = '"+gender+ "',tutor = '" + tutor + "',residence = '"
                                                 +residence+"',dorm = '"+ dorm +"',office = '"+office+"',mail = '"+email+"',phone= '"
